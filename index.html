@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Simon Kempendorf">
+    <title>iCloud Photo Downloader</title>
+
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+    <div class="container hidden" id="divInput">
+      <div class="page-header">
+        <h1>iCloud Photo Downloader<br><small>by Simon Kempendorf</small></h1>
+      </div>
+
+      <p class="lead">
+        ...
+      </p>
+
+      <p>
+        <input type="text" class="form-control" placeholder="URL of shared album" id="inputUrl" value="https://www.icloud.com/sharedalbum/de-de/#B0U532ODWGAMjYG">
+      </p>
+
+      <p class="text-center topmargin">
+        <button type="button" class="btn btn-primary" id="btnLoad">Load Album</button>
+      </p>
+    </div>
+
+    <div class="container hidden" id="divResultHeader">
+      <div class="row">
+        <div id="divResultTitle" class="col-md-8"></div>
+        <div id="divResultMeta" class="col-md-4 text-right">
+          <div id="divNumPic" class="h4"></div>
+          <a id="btnDownload" class="btn btn-primary" disabled>Download all photos as .zip</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="container topmargin hidden" id="divResultBody">
+      <div class="panel panel-default">
+        <div id="divResult" class="panel-body text-center"></div>
+      </div>
+    </div>
+
+    <div class="container topmargin">
+      <div class="alert alert-danger h4 hidden text-center" id="divError">
+        <i class="glyphicon glyphicon-alert"></i>
+        <span class="h4"></span>
+      </div>
+    </div>
+
+    <div id="divLoader">
+      <img src="ajax-loader.gif">
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+      <div class="row">
+        <div class="col-sm-6 text-muted">
+            iCloud Photo Downloader | Made by Simon Kempendorf
+        </div>
+        <div class="col-sm-6 text-right">
+            <a href="#">About</a>
+            <a href="https://github.com/code28/icloudphd">Source Code</a>
+        </div>
+      </div>
+      </div>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="jszip.min.js"></script>
+    <script src="FileSaver.min.js"></script>
+    <script src="main.js"></script>
+
+  </body>
+</html>
