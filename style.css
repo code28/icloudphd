@@ -11,6 +11,9 @@ body {
   background-color:#1c1c1c;
   border-color:#3e3e3e;
 }
+.lead {
+  font-weight:200;
+}
 .container {
 	width:auto;
 	max-width: 60%;
