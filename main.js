@@ -31,13 +31,6 @@ $('#btnLoad').click(function () {
 });
 
 
-$('#btnDownload').click(function () {
-	$(this).html('loading...').attr('disabled', 'true');
-	console.log(baseUrl + window.location.hash.substr(1) + '/sharedstreams/ziparchive');
-	window.location.href = baseUrl + window.location.hash.substr(1) + '/sharedstreams/ziparchive';
-});
-
-
 function loadAlbum(albumId)
 {
 var albumName = '';
@@ -76,8 +69,10 @@ $.ajax({
 })
 .then(function (data) {
 	var result = '';
+	var photosArray = [];
 	$.each(photos, function (id) {
 		photos[id].url = 'https://' + data.items[id].url_location + data.items[id].url_path;
+		photosArray.push(photos[id].url);
 		result += '<a href="https://www.icloud.com/sharedalbum/#' + albumId + ';' + photos[id].guid + '"><img src="' + photos[id].url + '" class="img"></a>';
 		//result += '<a class="imgdownload" href="' + photos[id].url + '" download><img src="' + photos[id].url + '" class="img"></a>';
 	});
@@ -85,7 +80,18 @@ $.ajax({
 	$('#divLoader').fadeOut();
 	$('#divResultBody').fadeIn();
 
-	$('#btnDownload').removeAttr('disabled');
+	$('#btnDownload').click(function () {
+		$(this).html('loading...').attr('disabled', 'true');
+		var newForm = $('<form>', {
+			'action': baseUrl + window.location.hash.substr(1) + '/sharedstreams/ziparchive',
+			'method': 'POST'
+		}).append($('<input>', {
+			'name': 'data',
+			'value': encodeURIComponent('{"albumName": "' + albumName + '", "photos": ' + JSON.stringify(photosArray) + '}'),
+			'type': 'hidden'
+		}));
+		newForm.submit();
+	}).removeAttr('disabled');
 })
 .fail(function(err) {
 	if (err.status == 404)
